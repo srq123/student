@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
+	"student/controller"
+	"student/database"
+	"student/datamodels"
+)
+
+func main() {
+	database.GetEngine()
+	var (
+		student  datamodels.Student
+		con     controller.StudentController
+	)
+	//err := con.Insert(student)
+	//if err != nil {
+	//	return
+	//}
+	stu := con.GetStudent(&student)
+	fmt.Println(stu)
+}
