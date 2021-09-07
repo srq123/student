@@ -25,7 +25,8 @@ func (s *StudentController) Insert(data datamodels.Student) error {
 	return nil
 }
 
-func (s *StudentController) GetStudent(data *datamodels.Student) datamodels.Student {
+func (s *StudentController) ListStudent(data *datamodels.Student) datamodels.Student {
+
 	stu := s.Service.ListStudent(*data)
 	return stu
 }
@@ -37,3 +38,4 @@ func (s *StudentController) UpdateStudent(student datamodels.Student) {
 	}
 	s.Service.UpdateStudentById(student)
 }
+

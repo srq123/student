@@ -47,7 +47,7 @@ func (stu *StudentDao) UpdateStudent(username, studentName, sex, createTime, upd
 	student.Sex = sex
 	student.SysCreated = createTime
 	student.SysUpdated = updateTime
-	_, err := stu.engine.Update(student)
+	_, err := stu.engine.Update(&student)
 	if err != nil {
 		return
 	}
@@ -58,6 +58,23 @@ func (stu *StudentDao) GetStudent(student datamodels.Student) datamodels.Student
 	stu.engine.ShowSQL()
 	if err != nil {
 		return student
+	}
+	return student
+}
+func (stu *StudentDao) GetStudentById(id int) datamodels.Student {
+	var student datamodels.Student
+	_, err := stu.engine.ID(id).Get(&student)
+	if err != nil {
+		return datamodels.Student{}
+	}
+	return student
+}
+
+func (stu *StudentDao) GetStudentByName(name string) datamodels.Student {
+	var student datamodels.Student
+	_, err := stu.engine.Where("studentName=?", name).Get(&student)
+	if err != nil {
+		return datamodels.Student{}
 	}
 	return student
 }

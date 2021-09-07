@@ -18,6 +18,7 @@ func main() {
 	//if err != nil {
 	//	return
 	//}
-	stu := con.GetStudent(&student)
+	fmt.Println(student)
+	stu := con.ListStudent(&student)
 	fmt.Println(stu)
 }

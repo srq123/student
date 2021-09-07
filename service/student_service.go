@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"student/dao"
 	"student/datamodels"
 )
@@ -40,16 +41,16 @@ func (s *studentService) UpdateStudentById(student datamodels.Student) {
 	s.studentDao.UpdateStudent(student.UserName, student.StudentName, student.Sex, student.SysCreated, student.SysUpdated)
 }
 
-//func GetStudentById(id int) {
-//
-//}
+func (s *studentService) GetStudentById(id int) datamodels.Student {
+	data := s.studentDao.GetStudentById(id)
+	return data
+}
+
 //func GetStudentByName(name string) {
 //
 //}
 func (s *studentService) ListStudent(stu datamodels.Student) datamodels.Student {
 	stuData := s.studentDao.GetStudent(stu)
+	fmt.Println(stuData)
 	return stuData
 }
-
-
-
